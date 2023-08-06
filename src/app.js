@@ -15,7 +15,7 @@ app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(morgan('dev'))
-const staticFileMiddleware = express.static('VUE_SRC/build');
+const staticFileMiddleware = express.static('VUE_SRC/dist');
 app.use(staticFileMiddleware);
 app.use(history({
   disableDotRule: true,
