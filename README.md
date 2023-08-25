@@ -6,7 +6,7 @@ Build Image:
 ```
 docker build -t nama_image .
 ```
-buatlah directory VUE_SRC dan masukan project vue di dalamnya.
+buatlah directory VUE_SRC pada root level daro project dan masukan project vue di dalamnya.
 atau clone project VUE dan rename folder menjadi VUE_SRC
 Jalankan container:
 
@@ -18,11 +18,15 @@ docker run -d -t -i -v /path/ke/VUE_SRC:/VUE_SRC -p 5000:5000 --name nama_contai
 
 untuk updating:
 ```
-docker cp ./src nama_container:/
-docker cp ./package.json nama_container:/
-docker exec -it nama_container npm install
-docker exec -w /VUE_SRC nama_container npm install --force
-docker exec -w /VUE_SRC nama_container npm run build
+cd /path/ke/VUE_SRC &&
+git pull origin main &&
+cd /path/ke/project &&
+docker cp ./VUE_SRC nama_container:/
+docker cp ./src nama_container:/ &&
+docker cp ./package.json nama_container:/ &&
+docker exec -it nama_container npm install &&
+docker exec -w /VUE_SRC nama_container npm install --force &&
+docker exec -w /VUE_SRC nama_container npm run build &&
 docker exec -it nama_container pm2 reload all
 
 ```
