@@ -8,7 +8,6 @@ COPY .env .
 COPY VUE_SRC VUE_SRC/
 # Install app dependencies
 RUN apk add yarn
-RUN npm install -g npm
 ENV NPM_CONFIG_LOGLEVEL warn
 RUN npm install --production
 WORKDIR "/VUE_SRC"
